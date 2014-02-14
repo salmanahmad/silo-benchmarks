@@ -1,0 +1,22 @@
+
+func(foo {
+    while(true {
+      fiber.yield()
+    })
+})
+
+func(test {
+  f : fiber.Fiber = fiber.Fiber(foo)
+
+  i : int = 0
+  duration : long = time({
+    while(i < 1000000 {
+      i = i + 1
+      fiber.resume(f)
+    })
+  })
+
+  println(Long(duration))
+})
+
+test()
