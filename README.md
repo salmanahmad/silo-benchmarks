@@ -54,3 +54,9 @@ Fixes to ulimit and Port Range
 ===============
 
 Generally, you should run the benchmarks on Linux. With OS X there are several things that you need to tweak.
+
+http://superuser.com/questions/261023/how-to-change-default-ulimit-values-in-mac-os-x-10-6
+
+http://stackoverflow.com/questions/1216267/ab-program-freezes-after-lots-of-requests-why
+
+
