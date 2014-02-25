@@ -1,18 +1,16 @@
 
-import timeit
+# http://nichol.as/benchmark-of-python-web-servers
 
-def foo():
-    while True:
-        yield
+from gevent import wsgi
 
-def test():
-    i = 0
-    f = foo()
-    while i < 1000000:
-        i = i + 1
-        f.next()
-        
+def application(environ, start_response):
+    status = '200 OK'
+    output = 'Pong!'
+ 
+    response_headers = [('Content-type', 'text/plain'),
+                        ('Content-Length', str(len(output)))]
+    start_response(status, response_headers)
+    return [output]
 
-if __name__ == "__main__":
-    print(timeit.timeit("test()", setup="from __main__ import test", number=1))
-    
+
+wsgi.WSGIServer(('', 8200), application, spawn=None).serve_forever()
