@@ -8,5 +8,5 @@ class HelloWorld
   end
 end
 
-Rack::Handler::Thin.run HelloWorld.new, :Port => 8000
+Rack::Handler::Thin.run HelloWorld.new, :Port => 8100
 
