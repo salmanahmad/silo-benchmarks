@@ -3,6 +3,13 @@ Silo Benchmark Suite
 
 Benchmarks for The Silo Programming Language. Benchmarks a variety of different things including CPU performance, memory usage, network performance (TCP + HTTP) and others.
 
+Methodology
+===============
+
+Be sure to run your benchmarking client(s) on separate machines than your server. Before recording numbers, run the experiment three times and then record the numbers from the fourth run. This allows different languages to "warm up" and optimize code.
+
+After running the benchmarks for a certain language, be sure to restart both the server and client machines.
+
 Requirements
 ===============
 
