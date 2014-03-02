@@ -3,6 +3,8 @@ GEM
   specs:
     daemons (1.1.9)
     eventmachine (1.0.3)
+    puma (2.8.0)
+      rack (>= 1.1, < 2.0)
     rack (1.5.2)
     thin (1.6.1)
       daemons (>= 1.0.9)
@@ -13,5 +15,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  puma
   rack
   thin
