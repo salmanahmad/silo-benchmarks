@@ -48,7 +48,7 @@ Each language has a range of ports that they can use. They should always use the
 - Java: 8400 - 8499
 - Scala: 8500 - 8599
 - Clojure: 8600 - 8699
-
+- Go: 8700 - 8799
 
 Fixes to ulimit and Port Range
 ===============
