@@ -2,15 +2,17 @@
 import(silo.net.http)
 
 func(handler(c : connection.Connection) {
+    //connection.writeContinue(c)
     connection.readAll(c)
-    connection.writeAll(c, 200, null, "Hello, World!");
+    connection.writeAll(c, 200, null, "Hello, World!")
 })
 
 func(simpleServer() {
     println("Silo - Running on port 8000")
 
-    options : Map = map.create();
-    options = map.set(options, "port", Integer(8000));
+    options : Map = map.create()
+    options = map.set(options, "port", Integer(8000))
+    //options = map.set(options, "send-100-continue", null)
 
     s : server.Server = server.build(handler, options)
 
