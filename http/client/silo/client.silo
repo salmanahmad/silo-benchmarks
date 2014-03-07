@@ -1,0 +1,37 @@
+
+import(silo.net.http)
+
+//c : connection.Connection = client.request(map.create(
+//    "hostname" "www.google.com"
+//    "port" 80
+//    "path" "/"
+//    "method" "POST"
+//    "headers" map.create(
+//        "connection" "keep-alive"
+//    )
+//))
+
+
+// How do I send a body?
+
+r : client.Request = client.request("http://www.google.com/")
+
+
+
+
+// The problem is how do I get the headers? Connection already packs up the headers / version / other stuff...
+
+c : connection.Connection = client.request("http://www.google.com/")
+
+connection.writeHead(c, "Hello, World!")
+connection.write(c, "Hello, World!")
+connection.write(c, "This is super fun!")
+connection.writeEnd()
+
+connection.writeAll(c, "Foobar!")
+
+c = connection.readHead(c)
+connection.read()
+connection.readAll()
+
+connection.close(c)
