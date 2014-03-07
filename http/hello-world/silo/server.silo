@@ -1,7 +1,7 @@
 
 import(silo.net.http)
 
-func(handler(c : connection.Connection) {
+func(handler(r : connection.Request, c : connection.Connection) {
     //connection.writeContinue(c)
     connection.readAll(c)
     connection.writeAll(c, 200, null, "Hello, World!")
