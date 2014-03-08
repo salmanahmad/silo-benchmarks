@@ -3,8 +3,11 @@ import(silo.net.http)
 
 func(handler(r : connection.Request, c : connection.Connection) {
     //connection.writeContinue(c)
-    connection.readAll(c)
+
+    m : connection.HttpContentMessage = connection.readAll(c)
     connection.writeAll(c, 200, null, "Hello, World!")
+
+    //println(m.content#toString(io.netty.util.CharsetUtil.UTF_8))
 })
 
 func(simpleServer() {

@@ -1,37 +1,32 @@
 
 import(silo.net.http)
 
-//c : connection.Connection = client.request(map.create(
-//    "hostname" "www.google.com"
-//    "port" 80
-//    "path" "/"
-//    "method" "POST"
-//    "headers" map.create(
-//        "connection" "keep-alive"
-//    )
-//))
+alias(ByteBuf, io.netty.buffer.ByteBuf)
+alias(CharsetUtil, io.netty.util.CharsetUtil)
+alias(Unpooled, io.netty.buffer.Unpooled)
 
+println("Running Client!")
 
-// How do I send a body?
+message : String = "This is some sweet content"
 
-r : client.Request = client.request("http://www.google.com/")
+// Use all defaults
+c : connection.Connection = client.request(map.create(
+    "port" Integer(8000)
+    "method" "POST"
+    "headers" map.create(
+        "Content-Length" Integer(message#length())
+        "Content-Type" "text/plain"
+    )
+))
 
+// Even for GET requests you have to writeEnd
+connection.write(c, message)
+connection.writeEnd(c, null)
 
+r : connection.Response = connection.readHead(c)
+m : connection.HttpContentMessage = connection.readAll(c)
 
-
-// The problem is how do I get the headers? Connection already packs up the headers / version / other stuff...
-
-c : connection.Connection = client.request("http://www.google.com/")
-
-connection.writeHead(c, "Hello, World!")
-connection.write(c, "Hello, World!")
-connection.write(c, "This is super fun!")
-connection.writeEnd()
-
-connection.writeAll(c, "Foobar!")
-
-c = connection.readHead(c)
-connection.read()
-connection.readAll()
+println(r.headers)
+println(m.content#toString(CharsetUtil.UTF_8))
 
 connection.close(c)
