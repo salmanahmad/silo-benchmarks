@@ -1,9 +1,11 @@
+
 package main
 
 import (
     "fmt"
     "net/http"
     "strconv"
+    "runtime"
 )
 
 func handler(w http.ResponseWriter, r *http.Request) {
@@ -14,7 +16,8 @@ func handler(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
-    fmt.Printf("Go (Single Thread) - Running on port 8700\n")
+    runtime.GOMAXPROCS(runtime.NumCPU())
+    fmt.Printf("Go (Multithreaded) - Running on port 8701\n")
     http.HandleFunc("/", handler)
-    http.ListenAndServe("127.0.0.1:8700", nil)
+    http.ListenAndServe("127.0.0.1:8701", nil)
 }

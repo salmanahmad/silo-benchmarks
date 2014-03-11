@@ -16,3 +16,10 @@ sudo ulimit -n 10240
 #sysctl -w net.ipv4.tcp_max_syn_backlog=2500
 #sysctl -w net.core.netdev_max_backlog=2500
 #ulimit -n 10240
+
+
+## To pass arguments into a Makefile
+## make action argument=something
+#echo:
+#    echo $(argument)
+
