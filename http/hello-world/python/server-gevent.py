@@ -7,12 +7,12 @@ def application(environ, start_response):
     status = '200 OK'
     output = 'Hello, World!'
 
-    response_headers = [('Content-type', 'text/plain'),
-                        ('Content-Length', str(len(output)))]
+    response_headers = [('Connection', 'Keep-Alive'), ('Content-Length', str(len(output)))]
     start_response(status, response_headers)
     return [output]
 
 
 print("Python (GEvent) - Running on port 8200")
 
-wsgi.WSGIServer(('', 8200), application, spawn=None, log=None).serve_forever()
+#spawn=None
+wsgi.WSGIServer(('127.0.0.1', 8200), application, log=None).serve_forever()

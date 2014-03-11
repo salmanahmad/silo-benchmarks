@@ -1,9 +1,9 @@
 
-server:
-	python server.py
+server-gevent:
+	python server-gevent.py
 
-test:
+test-server-gevent:
 	ab -n 100000 -c 100 127.0.0.1:8200/
 
-test-k:
+test-server-gevent-k:
 	ab -k -n 100000 -c 100 127.0.0.1:8200/
