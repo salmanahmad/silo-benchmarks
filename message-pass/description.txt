@@ -1,0 +1,3 @@
+Create two actors. Send 1 million messages to it and have it acknowledge all of them.
+
+Be sure to include Go.

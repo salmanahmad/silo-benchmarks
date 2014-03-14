@@ -1,0 +1,3 @@
+Simply create 1 million actors (or threads). Be sure to measure memory usage and time to create.
+
+Be sure to include Go.
