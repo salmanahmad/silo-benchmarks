@@ -1,0 +1,16 @@
+func(service {
+    actor.read()
+})
+
+startTime : long = System.nanoTime();
+
+i : int = 0
+while(i < 1000000 {
+    a : String = actor.spawn(service)
+    actor.send(a, "")
+
+    i = i + 1
+})
+
+estimatedTime : long = System.nanoTime() - startTime;
+println("Total Duration: " + (estimatedTime / 1000000L));
