@@ -1,0 +1,40 @@
+func(first(home : String) {
+    service(actor.read() | checkcast(String), home, "0")
+})
+
+func(service(next : String, home : String, tag : String) {
+    while(true {
+        i : int = actor.read() | checkcast(Integer) # intValue()
+
+        if(i == 1000000 {
+            actor.send(home, "done")
+        } else {
+            actor.send(next, Integer(i + 1))
+        })
+    })
+})
+
+
+startTime : long = System.nanoTime();
+
+println("Starting.")
+
+count : int = 1000
+
+start : String = actor.spawn(first, actor.self())
+previous : String = start
+
+i : int = count - 1
+while(i > 0 {
+    previous = actor.spawn(service, previous, actor.self(), "" + i)
+
+    i = i - 1
+})
+
+actor.send(start, previous)
+actor.send(start, Integer(0))
+
+actor.read()
+
+estimatedTime : long = System.nanoTime() - startTime;
+println("Total Duration: " + (estimatedTime / 1000000L));
