@@ -3,8 +3,8 @@
 
 service(A, B) ->
     receive
-        {Pid, message} ->
-            Pid ! {value, A},
+        Pid ->
+            Pid ! A,
             Temp = B,
             service(A + Temp, A)
     end.
@@ -20,9 +20,8 @@ start() ->
 
 loop(Count, Pid) when Count == 0 -> true;
 loop(Count, Pid) -> 
-    Pid ! {self(), message},
+    Pid ! self(),
     receive
-        {value, F} ->
-            F
+        F -> F
     end,
     loop(Count - 1, Pid).

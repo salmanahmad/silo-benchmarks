@@ -1,0 +1,35 @@
+func(pong {
+    while(true {
+        sender : String = actor.read() | checkcast(String)
+        actor.send(sender, "Pong")
+    })
+})
+
+func(random(min : int, max : int => int) {
+    min + checkcast((Math.random() * ((max - min) + 1)), int)
+})
+
+startTime : long = System.nanoTime();
+
+count : int = 100
+
+pongers : Vector = vector.create()
+i : int = 0
+while(i < count {
+    pongers = vector.push(pongers, actor.spawn(pong))
+    i = i + 1
+})
+
+sender : String = actor.self()
+
+while(i < 1000000 {
+    index : int = random(0, count - 1)
+    ponger : String = pongers | vector.get(index) | checkcast(String)
+    actor.send(ponger, sender)
+    actor.read()
+
+    i = i + 1
+})
+
+estimatedTime : long = System.nanoTime() - startTime;
+println("Total Duration: " + (estimatedTime / 1000000L));
