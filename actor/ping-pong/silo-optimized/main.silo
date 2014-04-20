@@ -1,0 +1,32 @@
+
+alias(Actor, silo.lang.Actor)
+
+func(random(min : int, max : int => int) {
+    min + checkcast((Math.random() * ((max - min) + 1)), int)
+})
+
+startTime : long = System.nanoTime();
+
+count : int = 100
+
+pongers : Vector = vector.create()
+i : int = 0
+while(i < count {
+    pongers = vector.push(pongers, actor.spawnRaw(pong))
+    i = i + 1
+})
+
+sender : Actor = actor.selfRaw()
+
+i =  0
+while(i < 1000000 {
+    index : int = random(0, count - 1)
+    ponger : Actor = pongers | vector.get(index) | checkcast(Actor)
+    actor.sendRaw(ponger, sender)
+    actor.read()
+
+    i = i + 1
+})
+
+estimatedTime : long = System.nanoTime() - startTime;
+println("Total Duration: " + (estimatedTime / 1000000L));
