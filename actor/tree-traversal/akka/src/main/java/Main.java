@@ -86,6 +86,8 @@ public class Main {
                     this.paths.addLast((ArrayList)children.get(i));
                 }
 
+                //workerRouter = getContext().actorOf(Client.props(...));
+
                 if(this.paths.size() == 0) {
                     finish.tell(new Integer(count), getSelf());
                 } else {
