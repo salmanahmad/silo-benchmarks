@@ -1,0 +1,29 @@
+func(fib {
+    a : int = 0
+    b : int = 1
+    while(true {
+        sender : String = actor.read() | checkcast(String)
+        actor.send(sender, Integer(a))
+
+        temp : int = b
+        b = a
+        a = a + temp
+    })
+})
+
+
+startTime : long = System.nanoTime();
+
+sender : String = actor.self()
+generator : String = actor.spawn(fib)
+
+i : int = 0
+while(i < 1000000 {
+    actor.send(generator, sender)
+    actor.read()
+
+    i = i + 1
+})
+
+estimatedTime : long = System.nanoTime() - startTime;
+println("Total Duration: " + (estimatedTime / 1000000L));

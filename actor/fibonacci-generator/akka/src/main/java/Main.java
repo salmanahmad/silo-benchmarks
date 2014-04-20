@@ -10,11 +10,23 @@ import java.io.Serializable;
 import java.util.concurrent.TimeUnit;
 
 public class Main {
-    public static class Message implements Serializable {}
+    public static class Message implements Serializable {
+        public final int value;
+        public Message(int value) {
+            this.value = value;
+        }
+    }
 
-    public static class Service extends UntypedActor {
+    public static class Fib extends UntypedActor {
+        int a = 0;
+        int b = 1;
+
         public void onReceive(Object message) {
-            unhandled(message);
+            getSender().tell(new Message(a), getSelf());
+
+            int temp = b;
+            b = a;
+            a = a + temp;
         }
     }
 
@@ -22,10 +34,13 @@ public class Main {
         long startTime = System.nanoTime();
 
         final ActorSystem system = ActorSystem.create("akka");
+        final Inbox inbox = Inbox.create(system);
+
+        ActorRef generator = system.actorOf(Props.create(Fib.class), "generator");
 
         for(int i = 0; i < 1000000; i++) {
-            ActorRef greeter = system.actorOf(Props.create(Service.class), "greeter" + i);
-            greeter.tell(new Message(), ActorRef.noSender());
+            inbox.send(generator, new Message(0));
+            Message greeting1 = (Message)inbox.receive(Duration.create(5, TimeUnit.SECONDS));
         }
 
         long estimatedTime = System.nanoTime() - startTime;
