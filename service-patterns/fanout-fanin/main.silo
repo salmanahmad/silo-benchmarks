@@ -1,0 +1,28 @@
+
+func(background(a : Address, r : Request => Future) {
+    future.spawn(actor.send(a, r))
+})
+
+func(service(a : Address, b : Address, c : Address) {
+    while(true {
+        request : Request = actor.read()
+        sender : Address = request.sender
+
+        aa : Future = background(a, request)
+        bb : Future = background(b, request)
+        cc : Future = background(c, request)
+
+        actor.awaitAll(message
+            aa {
+                aa.value = message.value
+            } bb {
+                bb.value = message.value
+            } cc {
+                cc.value = message.value
+            }
+        )
+
+        response : Response = buildResponse(aa.value, bb.value, cc.value)
+        actor.send(sender, response)
+    })
+})

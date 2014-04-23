@@ -1,0 +1,20 @@
+func(service {
+    ...
+})
+
+func(loadBalance(f : Function, replication : int) {
+    servers : Vector = vector.create()
+    repeat(replication {
+        servers = vector.push(servers, spawn(f))
+    })
+
+    while(true {
+        message = actor.read()
+        i : int = Math.random() * replication + 1
+        a : String = vector.get(servers, i) | checkcast(String)
+
+        actor.send(a, message)
+    })
+})
+
+serviceHandle : Address = actor.spawn(loadBalance(send, 10))

@@ -1,0 +1,26 @@
+alias(HashMap, java.util.HashMap)
+
+func(service {
+    data : HashMap = HashMap()
+
+    while(true {
+        request : Map = actor.read() | checkcast(Map)
+
+        kind : String = map.get(request, "kind")
+        sender : Address = map.get(request, "sender")
+
+        key : String = map.get(request, "key", "")
+        value : Object = null
+
+        if(kind == "GET" {
+            actor.send(sender, data#get(key))
+        } else(kind == "PUT") {
+            value = map.get(request, "value")
+            data#put(key, value)
+
+            actor.send(sender, data#get(key))
+        } else {
+            // Unknown Case
+        })
+    })
+})

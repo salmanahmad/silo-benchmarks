@@ -1,0 +1,52 @@
+
+func(uuid(null => String) {
+    java.util.UUID.randomUUID()#toString()
+})
+
+func(server {
+    while(true {
+        ignore(Exeption {
+            message : Object = actor.read()
+            request : Map = message | as(Map)
+
+            sender : Address = request | map.get("sender") | as (Address)
+            id : String = request | map.get("sender") | as (String)
+
+            response = ...
+
+            response : Map = map.create(
+                "id" (request | map.get("id"))
+                "response" (response)
+            )
+
+            actor.send(sender, response)
+        })
+    })
+})
+
+func(call(s : Address, payload : Object) {
+    id : String = uuid()
+
+    request : Map = map.create(
+        "id" id
+        "payload" payload
+        "sender" actor.self()
+    )
+
+    actor.send(s, request)
+
+    while(true {
+        message : Object = actor.peek()
+
+        if(message | is(Map) {
+            response : Map = message | as(Map)
+            if(response | map.get("id") == id {
+                actor.read()
+
+                return(response | map.get("response"))
+            })
+        })
+
+        actor.skip()
+    })
+})
