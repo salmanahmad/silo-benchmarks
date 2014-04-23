@@ -1,0 +1,43 @@
+alias(CHashMap, java.util.concurrent.ConcurrentHashMap)
+
+func(service(data : CHashMap) {
+    while(true {
+        sender : String = actor.read() | checkcast(String)
+        actor.send(sender, "")
+        data#put("hello", "world")
+    })
+})
+
+func(tester(data : String, home : String) {
+    i : int = 0
+    while(i < 100000 {
+        actor.send(data, actor.self())
+        actor.read()
+        i = i + 1
+    })
+
+    println("Done")
+    actor.send(home, "done")
+})
+
+startTime : long = System.nanoTime();
+
+println("Starting.")
+
+data : CHashMap = CHashMap()
+handle = actor.spawn(service, data)
+
+i : int = 0
+while(i < 1000 {
+    actor.spawn(tester, handle, actor.self())
+    i = i + 1
+})
+
+i = 0
+while(i < 1000 {
+    actor.read()
+    i = i + 1
+})
+
+estimatedTime : long = System.nanoTime() - startTime;
+println("Total Duration: " + (estimatedTime / 1000000L));

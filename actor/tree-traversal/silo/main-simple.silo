@@ -1,0 +1,62 @@
+
+func(service {
+    // Total: (k^(h + 1) - 1) / (k - 1)
+    h : int = 20
+    k : int = 2
+
+    while(true {
+        message : Map = actor.read() | checkcast(Map)
+        path : Vector = message | map.get("path") | checkcast(Vector)
+        sender : String = message | map.get("sender") | checkcast(String)
+
+        length : int = vector.length(path)
+
+        if(length == h {
+            // No children after the 5th level
+            actor.send(sender, vector.create())
+        } else {
+            children : Vector = vector.create()
+            i : int = 0
+            while(i < k {
+                child : Vector = vector.push(path, Integer(i))
+                children = children | vector.push(child)
+
+                i = i + 1
+            })
+
+            actor.send(sender, children)
+        })
+    })
+})
+
+func(traverse(server : String, path : Vector => int) {
+    count : int = 1 
+
+    message : Map = map.create(
+        "path" path
+        "sender" actor.self()
+    )
+
+    actor.send(server, message)
+    children : Vector = actor.read() | checkcast(Vector)
+
+    i : int = 0
+    while(i < vector.length(children) {
+        count = count + traverse(server, children | vector.get(i) | checkcast(Vector))
+        i = i + 1
+    })
+
+    return(count)
+})
+
+startTime : long = System.nanoTime();
+
+println("Starting.")
+
+server : String = actor.spawn(service)
+
+count : int = traverse(server, vector.create())
+println("Count: " + count)
+
+estimatedTime : long = System.nanoTime() - startTime;
+println("Total Duration: " + (estimatedTime / 1000000L));

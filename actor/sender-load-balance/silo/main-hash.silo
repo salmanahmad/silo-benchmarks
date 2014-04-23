@@ -1,0 +1,37 @@
+alias(CHashMap, java.util.concurrent.ConcurrentHashMap)
+
+func(tester(data : CHashMap, home : String) {
+    i : int = 0
+    while(i < 100000 {
+        data#put("hello", "world")
+        i = i + 1
+    })
+
+    println("Done")
+    actor.send(home, "done")
+})
+
+func(random(min : int, max : int => int) {
+    min + checkcast((Math.random() * ((max - min) + 1)), int)
+})
+
+startTime : long = System.nanoTime();
+
+println("Starting.")
+
+data : CHashMap = CHashMap()
+
+i : int = 0
+while(i < 300 {
+    actor.spawn(tester, data, actor.self())
+    i = i + 1
+})
+
+i = 0
+while(i < 300 {
+    actor.read()
+    i = i + 1
+})
+
+estimatedTime : long = System.nanoTime() - startTime;
+println("Total Duration: " + (estimatedTime / 1000000L));

@@ -1,0 +1,57 @@
+alias(CHashMap, java.util.concurrent.ConcurrentHashMap)
+alias(Actor, silo.lang.Actor)
+
+func(service(data : CHashMap) {
+    while(true {
+        sender : Actor = actor.read() | checkcast(Actor)
+        actor.sendRaw(sender, "")
+        data#put("hello", "world")
+    })
+})
+
+func(tester(data : Vector, home : Actor) {
+    i : int = 0
+    while(i < 100000 {
+        index : int = random(0, 100 - 1)
+        address : Actor = data | vector.get(index) | checkcast(Actor)
+
+        actor.sendRaw(address, actor.selfRaw())
+        actor.read()
+        i = i + 1
+    })
+
+    println("Done")
+    actor.sendRaw(home, "done")
+})
+
+func(random(min : int, max : int => int) {
+    min + checkcast((Math.random() * ((max - min) + 1)), int)
+})
+
+startTime : long = System.nanoTime();
+
+println("Starting.")
+
+data : CHashMap = CHashMap()
+handle : Vector = vector.create()
+
+i : int = 0
+while(i < 100 {
+    handle = vector.push(handle, actor.spawnRaw(service, data))
+    i = i + 1
+})
+
+i = 0
+while(i < 300 {
+    actor.spawnRaw(tester, handle, actor.selfRaw())
+    i = i + 1
+})
+
+i = 0
+while(i < 300 {
+    actor.read()
+    i = i + 1
+})
+
+estimatedTime : long = System.nanoTime() - startTime;
+println("Total Duration: " + (estimatedTime / 1000000L));
