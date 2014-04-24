@@ -1,0 +1,47 @@
+
+func(uuid {
+    java.util.UUID.randomUUID()#toString()
+})
+
+type(ServerRequest {
+    id : String
+    sender : String
+    payload : Object
+})
+
+type(ServerResponse {
+    id : String
+    response : Object
+})
+
+func(server {
+    while(true {
+        actor.accept(message {
+            ServerMessage {
+                response = ServerResponse(message.id, "...")
+                actor.send(message.sender, response)
+            }
+        })
+    })
+})
+
+func(call(s : Address) {
+    f = fn(payload => ServerResponse {
+        actor.send(ServerRequest(null, actor.self(), payload))
+        actor.read() | checkcast(ServerResponse)
+    })
+
+    request1 : Future = future.spawn(f, "...payload1...")
+    request2 : Future = future.spawn(f, "...payload2...")
+
+    // If you want to wait on everything...
+    // future.join(request1, request2)
+
+    output : Future = future.await(request1, request2)
+
+    if(future.equals(output, request1) {
+        println("First Request Wins!!")
+    } else(future.equals(output, request2)) {
+        println("Second Request Wins!!")
+    })
+})

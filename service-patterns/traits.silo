@@ -1,0 +1,22 @@
+
+trait(Lock {
+    method(lock(self => self))
+    method(unlock(self => self))
+})
+
+type(MyLock {
+    locked : boolean
+
+} implements(Lock) {
+
+    method(lock(self => self) {
+        self.locked = true
+        return(self)
+    })
+
+    method(unlock(self => self) {
+        self.locked = false
+        return(self)
+    })
+})
+

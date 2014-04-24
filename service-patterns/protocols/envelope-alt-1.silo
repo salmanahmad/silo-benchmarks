@@ -1,0 +1,32 @@
+
+type(ServerMessage {
+    sender : String
+    payload : Object
+})
+
+func(server {
+    while(true {
+        actor.accept(message {
+            ServerMessage {
+                response = "...response..."
+                actor.send(message.sender, response)
+            }
+        })
+    })
+})
+
+func(call(s : Address, payload : Object) {
+    message : ServerMessage = ServerMessage(actor.self(), payload)
+    actor.send(message)
+
+    // Discusion point: What happens if I do this...
+    // actor.send(message, payload + "Hi!")
+
+    actor.accept(message {
+        ServerMessage {
+            println("Done!")
+        } timeout(3s) {
+            println("Did not hear back... giving up...")
+        }
+    })
+})

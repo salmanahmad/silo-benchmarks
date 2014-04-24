@@ -17,4 +17,4 @@ func(loadBalance(f : Function, replication : int) {
     })
 })
 
-serviceHandle : Address = actor.spawn(loadBalance(send, 10))
+serviceHandle : Address = actor.spawn(loadBalance(service, 10))

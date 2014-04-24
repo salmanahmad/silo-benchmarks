@@ -1,0 +1,25 @@
+
+import(silo.net.http)
+
+func(handler(r : connection.Request, c : connection.Connection) {
+    //connection.writeContinue(c)
+
+    m : connection.HttpContentMessage = connection.readAll(c)
+    connection.writeAll(c, 200, null, "Hello, World!")
+})
+
+func(simpleServer() {
+    println("Silo - Running on port 8000")
+
+    options : Map = map.create()
+    options = map.set(options, "port", Integer(8000))
+    //options = map.set(options, "send-100-continue", null)
+
+    s : server.Server = server.build(handler, options)
+
+    server.start(s)
+    actor.read()
+    server.stop(s)
+})
+
+simpleServer()

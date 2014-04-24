@@ -1,8 +1,4 @@
 
-func(uuid(null => String) {
-    java.util.UUID.randomUUID()#toString()
-})
-
 func(server {
     while(true {
         ignore(Exeption {
@@ -25,7 +21,7 @@ func(server {
 })
 
 func(call(s : Address, payload : Object) {
-    id : String = uuid()
+    id : String = java.util.UUID.randomUUID()#toString()
 
     request : Map = map.create(
         "id" id

@@ -1,0 +1,32 @@
+
+import(silo.net.http)
+
+alias(ByteBuf, io.netty.buffer.ByteBuf)
+alias(CharsetUtil, io.netty.util.CharsetUtil)
+alias(Unpooled, io.netty.buffer.Unpooled)
+
+println("Running Client!")
+
+message : String = "This is some sweet content"
+
+// Use all defaults
+c : connection.Connection = client.request(map.create(
+    "port" Integer(8000)
+    "method" "POST"
+    "headers" map.create(
+        "Content-Length" Integer(message#length())
+        "Content-Type" "text/plain"
+    )
+))
+
+// Even for GET requests you have to writeEnd
+connection.write(c, message)
+connection.writeEnd(c, null)
+
+r : connection.Response = connection.readHead(c)
+m : connection.HttpContentMessage = connection.readAll(c)
+
+println(r.headers)
+println(m.content#toString(CharsetUtil.UTF_8))
+
+connection.close(c)

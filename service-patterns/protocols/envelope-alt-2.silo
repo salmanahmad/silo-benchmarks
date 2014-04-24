@@ -1,0 +1,44 @@
+
+func(uuid {
+    java.util.UUID.randomUUID()#toString()
+})
+
+type(ServerRequest {
+    id : String
+    sender : String
+    payload : Object
+})
+
+type(ServerResponse {
+    id : String
+    response : Object
+})
+
+func(server {
+    while(true {
+        actor.accept(message {
+            ServerMessage {
+                response = ServerResponse(message.id, "...")
+                actor.send(message.sender, response)
+            }
+        })
+    })
+})
+
+func(call(s : Address, payload : Object) {
+    id1 : String = uuid()
+    id2 : String = uuid()
+
+    actor.send(ServerRequest(id1, actor.self(), payload))
+    actor.send(ServerRequest(id2, message, payload + "Hi!"))
+
+    actor.accept(message {
+        ServerResponse(id == id1) {
+            println("First Request Wins!!")
+        } ServerResponse(id == id2) {
+            println("Second Request Wins!!")
+        } timeout(3s) {
+            println("Did not hear back... giving up...")
+        }
+    })
+})

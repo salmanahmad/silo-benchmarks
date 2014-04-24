@@ -1,0 +1,17 @@
+
+letters : Vector = vector.create("a", "b")
+
+// ["a" "b"]
+vector.push(letters, "c")
+println(letters)
+
+// ["a" "b" "c"]
+letters = vector.push(letters, "c")
+println(letters)
+
+// ["a" "b" "c" "d"]
+letters |= vector.push("d")
+println(letters)
+
+// "d"
+letters | vector.last() | println()
