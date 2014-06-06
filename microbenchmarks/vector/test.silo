@@ -1,18 +1,36 @@
 
+function(
+    name(foo)
+    resumable(false)
+    {
+        list : java.util.ArrayList = java.util.ArrayList()
+
+        for(l : int = 0; l < 1000000; l = l + 1 {
+            for(i : int = 0; i < 1000; i = i + 1 {
+                list#add(Integer(i));
+            })
+
+            for(i : int = 0; i < 1000; i = i + 1 {
+                list#remove(list#size() - 1);
+            })
+        })
+    }
+)
+
+function(
+    name(main)
+    resumable(false)
+    {
+    
+
 
 System.out#println("Starting Silo.")
 start : long = System.nanoTime()
 
-list : java.util.ArrayList = java.util.ArrayList()
-
-for(l : int = 0; l < 100000; l = l + 1 {
-    for(i : int = 0; i < 1000; i = i + 1 {
-        list#add(Integer(i));
-    })
-
-    for(i : int = 0; i < 1000; i = i + 1 {
-        list#remove(list#size() - 1);
-    })
-})
+foo()
 
 System.out#println("Silo Time: " + ((System.nanoTime() - start) / 1000000))
+
+})
+
+main()
