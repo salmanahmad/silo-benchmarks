@@ -8,10 +8,10 @@ Starting Java.
 Java Time: 7712
 
 Starting Ruby.
-Ruby Time: 66.05314
+Ruby Time: 66053.14
 
 Starting JRuby.
-Ruby Time: 24.768
+Ruby Time: 24768.0
 
 
 

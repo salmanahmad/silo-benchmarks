@@ -3,12 +3,15 @@
 System.out#println("Starting Silo.")
 start : long = System.nanoTime()
 
-list : Map = map.create()
+map : java.util.HashMap = java.util.HashMap()
 
-for(l : int = 0; l < 1000000; l = l + 1 {
+for(l : int = 0; l < 100000; l = l + 1 {
     for(i : int = 0; i < 1000; i = i + 1 {
-        list = map.put(list, Integer(i), "");
-        list = map.remove(list, Integer(i));
+        map#put(Integer(i), "");
+    })
+
+    for(i : int = 0; i < 1000; i = i + 1 {
+        map#remove(Integer(i));
     })
 })
 

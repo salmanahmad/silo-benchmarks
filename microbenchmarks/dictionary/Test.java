@@ -11,9 +11,12 @@ public class Test {
 
         start = System.nanoTime();
         HashMap list = new HashMap();
-        for(long l = 0; l < 1000000; l++) {
+        for(long l = 0; l < 100000; l++) {
             for(int i = 0; i < 1000; i++) {
                 list.put(new Integer(i), "");
+            }
+
+            for(int i = 0; i < 1000; i++) {
                 list.remove(new Integer(i));
             }
         }
