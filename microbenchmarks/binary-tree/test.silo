@@ -1,0 +1,16 @@
+
+
+type(Node {
+    value : String
+    left : Node
+    right : Node
+})
+
+System.out#println("Starting Silo.")
+start : long = System.nanoTime()
+
+for(l : int = 0; l < 100000000; l = l + 1 {
+    Node("0", Node("1", null, Node("3", null, null)), Node("2", null, null));
+})
+
+System.out#println("Silo Time: " + ((System.nanoTime() - start) / 1000000))
