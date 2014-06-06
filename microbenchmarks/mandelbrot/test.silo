@@ -1,0 +1,50 @@
+
+func(mandelbrot(null => String) {   
+
+    buffer : StringBuilder = StringBuilder();
+    chars : String = " .,:;=|iI+hHOE#$-";
+
+    Im : double = 0.0;
+    Re : double = 0.0;
+    Zr : double = 0.0;
+    Zi : double = 0.0;
+    Zr2 : double = 0.0;
+    Zi2 : double = 0.0;
+    n : int = 0;
+
+    for(Im = 0 - 1.2; Im <= 1.2; Im = Im + 0.05 {   
+        for(Re = -2.0; Re <= 1; Re = Re + 0.03 {   
+            Zr = Re;
+            Zi = Im;
+            
+            for(n = 0; n < 16; n = n + 1 {   
+                Zr2 = Zr * Zr
+                Zi2 = Zi * Zi
+                if(Zr2 + Zi2 > 4 {
+                    break()
+                })
+
+                Zi = 2 * Zr * Zi + Im; 
+                // FIX ORDER OF OPERATIONS...
+                Zr = (Zr2 - Zi2) + Re;
+            })
+        
+            buffer#append(chars#charAt(n));
+        })
+        buffer#append("\n");
+    })
+
+    return(buffer#toString());
+})
+
+
+System.out#println("Starting Silo.")
+start : long = System.nanoTime()
+
+output : String = ""
+for(l : int = 0; l < 100000; l = l + 1 {
+    output = mandelbrot()
+})
+
+System.out#println("Silo Time: " + ((System.nanoTime() - start) / 1000000))
+System.out#println(output)
