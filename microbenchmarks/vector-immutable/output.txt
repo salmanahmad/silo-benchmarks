@@ -1,25 +1,15 @@
 Starting Java.
-Java Time: 12059
-
-Starting Silo-Mutable.
-Silo Time: 18944
+Java Time: 16101
 
 Starting Silo.
-Silo Time: 54307
+Silo Time: 1658
 
 Starting JS.
-Javascript Time: 21994
+Javascript Time: 18159
 
 Starting Ruby.
-Ruby Time: 39484
+Ruby Time: 67307.083
 
-Starting JRuby.
-Ruby Time: 17854
+Starting Ruby.
+Ruby Time: 19430.
 
-
-
-
-
-
-Starting Silo.
-Silo Time: 111089

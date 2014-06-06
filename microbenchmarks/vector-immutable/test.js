@@ -10,7 +10,7 @@ var start = new Date()
 
 var list = []
 
-for(l = 0; l < 100000; l++) {
+for(l = 0; l < 10000; l++) {
     for(i = 0; i < 1000; i++) {
         list = list.slice(0)
         list.push(i)

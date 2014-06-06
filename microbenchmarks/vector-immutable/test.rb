@@ -8,7 +8,7 @@ puts "Starting Ruby."
 
 start = Time.now
 list = []
-100000.times do
+10000.times do
   1000.times do |i|
     list.clone
     list.push(i)

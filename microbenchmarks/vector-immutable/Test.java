@@ -11,14 +11,14 @@ public class Test {
 
         start = System.nanoTime();
         ArrayList list = new ArrayList();
-        for(long l = 0; l < 100000; l++) {
+        for(long l = 0; l < 10000; l++) {
             for(int i = 0; i < 1000; i++) {
-                list new ArrayList(list);
+                list = new ArrayList(list);
                 list.add(new Integer(i));
             }
 
             for(int i = 0; i < 1000; i++) {
-                list new ArrayList(list);
+                list = new ArrayList(list);
                 list.remove(list.size()-1);
             }
         }

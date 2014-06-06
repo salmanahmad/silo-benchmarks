@@ -5,7 +5,7 @@ start : long = System.nanoTime()
 
 list : Vector = vector.create()
 
-for(l : int = 0; l < 100000; l = l + 1 {
+for(l : int = 0; l < 10000; l = l + 1 {
     for(i : int = 0; i < 1000; i = i + 1 {
         list = vector.push(list, Integer(i));
     })
