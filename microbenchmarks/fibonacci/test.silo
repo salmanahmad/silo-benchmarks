@@ -1,0 +1,31 @@
+
+function(
+    name(foo)
+    resumable(false)
+    inputs(n : int)
+    outputs(int) {
+        if(n <= 2 {
+            return(n)
+        } else {
+            return(foo(n - 1) + foo(n - 2))
+        })
+    }
+)
+
+func(fib(n : int => int) {
+    if(n <= 2 {
+        return(n)
+    } else {
+        return(fib(n - 1) + fib(n - 2))
+    })
+})
+
+
+System.out#println("Starting Silo.")
+start : long = System.nanoTime()
+
+for(l : int = 0; l < 100000; l = l + 1 {
+    foo(20)
+})
+
+System.out#println("Silo Time: " + ((System.nanoTime() - start) / 1000000))
