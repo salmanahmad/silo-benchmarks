@@ -1,0 +1,17 @@
+Starting Silo.
+Silo Time: 9809
+
+Starting JS.
+Javascript Time: 12831
+
+Starting Java.
+Java Time: 7712
+
+Starting Ruby.
+Ruby Time: 66.05314
+
+Starting JRuby.
+Ruby Time: 24.768
+
+
+
