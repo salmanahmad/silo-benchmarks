@@ -1,0 +1,28 @@
+function(
+    name(foo)
+    inputs(o : Object, o : Object)
+    resumable(true) {
+        x : int = 0;
+        a : Object = null;
+        b : Object = null;
+
+        foo(a, b)
+
+        return(o)
+    }
+)
+
+function(
+    name(bar)
+    inputs(o : Object)
+    resumable(false) {
+        x : int = 0;
+        o : Object = null;
+
+        bar(o)
+
+        return(o)
+    }
+)
+
+477

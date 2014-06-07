@@ -15,7 +15,7 @@ class Test {
         System.out.println("Starting...\n\n");
 
         start = System.nanoTime();
-        for(long i = 0; i < 10000000L; i++) {
+        for(long i = 0; i < 1000000000L; i++) {
             output = addShort(false, 5, 5);
         }
         System.out.println("Short duration: " + (System.nanoTime() - start) / 1000000.0);
@@ -23,7 +23,7 @@ class Test {
 
 
         start = System.nanoTime();
-        for(long i = 0; i < 10000000L; i++) {
+        for(long i = 0; i < 1000000000L; i++) {
             output = addMedium(false, 5, 5);
         }
         System.out.println("Medium duration: " + (System.nanoTime() - start) / 1000000.0);
@@ -32,7 +32,7 @@ class Test {
 
 
         start = System.nanoTime();
-        for(long i = 0; i < 10000000L; i++) {
+        for(long i = 0; i < 1000000000L; i++) {
             output = addLong(false, 5, 5);
         }
         System.out.println("Long duration: " + (System.nanoTime() - start) / 1000000.0);
@@ -40,7 +40,7 @@ class Test {
 
 
         start = System.nanoTime();
-        for(long i = 0; i < 10000000L; i++) {
+        for(long i = 0; i < 1000000000L; i++) {
             output = addMega(false, 5, 5);
         }
         System.out.println("Mega duration: " + (System.nanoTime() - start) / 1000000.0);
