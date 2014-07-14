@@ -29,3 +29,13 @@ for(l : int = 0; l < 100000; l = l + 1 {
 })
 
 System.out#println("Silo Time: " + ((System.nanoTime() - start) / 1000000))
+
+
+System.out#println("Starting Silo.")
+start : long = System.nanoTime()
+
+for(l : int = 0; l < 100000; l = l + 1 {
+    fib(20)
+})
+
+System.out#println("Silo Time: " + ((System.nanoTime() - start) / 1000000))
