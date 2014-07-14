@@ -1,0 +1,168 @@
+Last login: Mon Jul 14 16:41:27 on ttys001
+
+
+                 ###
+               ####	              User: salmanahmad
+               ###                    Hostname: dhcp-18-111-8-248.dyn.mit.edu
+       #######    #######             Distro: OS X 10.9.3
+     ######################           Kernel: Darwin
+    #####################             Uptime: 27 days
+    ####################              Shell: /bin/bash
+    ####################              Terminal: xterm-256color
+    #####################             Packages: 113
+     ######################           CPU: Intel Core i5 CPU M 520 @ 2.40GHz
+      ####################	            Memory: 8 GB
+        ################              Disk: 98%
+         ####     ##### 
+
+
+cd .salmanahmad@dhcp-18-111-8-248:~/Desktop/Research/silo-benchmarks/microbenchmarks/fibonacci/lib/test $ cd ..
+salmanahmad@dhcp-18-111-8-248:~/Desktop/Research/silo-benchmarks/microbenchmarks/fibonacci/lib $ cd ..
+salmanahmad@dhcp-18-111-8-248:~/Desktop/Research/silo-benchmarks/microbenchmarks/fibonacci $ cd ..
+salmanahmad@dhcp-18-111-8-248:~/Desktop/Research/silo-benchmarks/microbenchmarks $ ls
+binary-tree          dictionary           dictionary-immutable fibonacci            mandelbrot           parse-int            thread-ring          vector               vector-immutable
+salmanahmad@dhcp-18-111-8-248:~/Desktop/Research/silo-benchmarks/microbenchmarks $ cd ..
+salmanahmad@dhcp-18-111-8-248:~/Desktop/Research/silo-benchmarks $ ls
+README.md        SETUP.sh         actor            fiber            file             hello            http             jvm-method-size  message-pass     microbenchmarks  service-patterns thread-create    thread-ring      trampoline
+salmanahmad@dhcp-18-111-8-248:~/Desktop/Research/silo-benchmarks $ cd actor/
+salmanahmad@dhcp-18-111-8-248:~/Desktop/Research/silo-benchmarks/actor $ ls
+fibonacci-generator ping-pong           sender-load-balance thread-creation     thread-ring         tree-traversal
+salmanahmad@dhcp-18-111-8-248:~/Desktop/Research/silo-benchmarks/actor $ cd ping-pong/
+salmanahmad@dhcp-18-111-8-248:~/Desktop/Research/silo-benchmarks/actor/ping-pong $ ls
+akka           erlang         silo           silo-optimized
+salmanahmad@dhcp-18-111-8-248:~/Desktop/Research/silo-benchmarks/actor/ping-pong $ cd silo
+salmanahmad@dhcp-18-111-8-248:~/Desktop/Research/silo-benchmarks/actor/ping-pong/silo $ ls
+Makefile  main.silo
+salmanahmad@dhcp-18-111-8-248:~/Desktop/Research/silo-benchmarks/actor/ping-pong/silo $ cd ../silo-optimized/
+salmanahmad@dhcp-18-111-8-248:~/Desktop/Research/silo-benchmarks/actor/ping-pong/silo-optimized $ ls
+Makefile   main.silo  ping.java  pong.class pong.java
+salmanahmad@dhcp-18-111-8-248:~/Desktop/Research/silo-benchmarks/actor/ping-pong/silo-optimized $ cat ping.java
+
+import java.util.*;
+
+import silo.lang.Runtime;
+import silo.lang.*;
+import silo.lang.compiler.*;
+import silo.lang.compiler.Compiler;
+import silo.lang.compiler.grammar.*;
+
+import java.util.*;
+
+import com.github.krukow.clj_lang.IPersistentVector;
+
+import java.lang.ClassNotFoundException;
+
+@Function.Definition
+public class pong extends Function {
+
+    @Function.Body
+    public static Object invoke(ExecutionContext context) {
+        Actor actor = context.fiber.actor;
+
+        while(true) {
+            Object o = silo.core.actor.read.invoke(context);
+            if(!context.yielding) {
+                //System.out.println("Got a message: " + o);
+                silo.core.actor.send.invoke(context, (String)o, "Pong");
+            } else {
+                //System.out.println("Yielding...");
+                return null;
+            }
+        }
+    }
+}salmanahmad@dhcp-18-111-8-248:~/Desktop/Research/silo-benchmarks/actor/ping-pong/silo-optimized $ cd ..
+salmanahmad@dhcp-18-111-8-248:~/Desktop/Research/silo-benchmarks/actor/ping-pong $ ls
+akka           erlang         silo           silo-optimized
+salmanahmad@dhcp-18-111-8-248:~/Desktop/Research/silo-benchmarks/actor/ping-pong $ cd ..
+salmanahmad@dhcp-18-111-8-248:~/Desktop/Research/silo-benchmarks/actor $ ls
+fibonacci-generator ping-pong           sender-load-balance thread-creation     thread-ring         tree-traversal
+salmanahmad@dhcp-18-111-8-248:~/Desktop/Research/silo-benchmarks/actor $ cd fibonacci-generator/
+salmanahmad@dhcp-18-111-8-248:~/Desktop/Research/silo-benchmarks/actor/fibonacci-generator $ ls
+akka   erlang silo
+salmanahmad@dhcp-18-111-8-248:~/Desktop/Research/silo-benchmarks/actor/fibonacci-generator $ cd silo/
+salmanahmad@dhcp-18-111-8-248:~/Desktop/Research/silo-benchmarks/actor/fibonacci-generator/silo $ ls
+Makefile  main.silo
+salmanahmad@dhcp-18-111-8-248:~/Desktop/Research/silo-benchmarks/actor/fibonacci-generator/silo $ silo main.silo 
+Total Duration: 5281
+salmanahmad@dhcp-18-111-8-248:~/Desktop/Research/silo-benchmarks/actor/fibonacci-generator/silo $ ~/Desktop/silos/silo-
+silo-fixed-thread-pool/    silo-generic-stack-frames/ 
+salmanahmad@dhcp-18-111-8-248:~/Desktop/Research/silo-benchmarks/actor/fibonacci-generator/silo $ ~/Desktop/silos/silo-
+silo-fixed-thread-pool/    silo-generic-stack-frames/ 
+salmanahmad@dhcp-18-111-8-248:~/Desktop/Research/silo-benchmarks/actor/fibonacci-generator/silo $ ~/Desktop/silos/silo-generic-stack-frames/bin/silo main.silo 
+Total Duration: 5610
+salmanahmad@dhcp-18-111-8-248:~/Desktop/Research/silo-benchmarks/actor/fibonacci-generator/silo $ cat main.silo 
+func(fib {
+    a : int = 0
+    b : int = 1
+    while(true {
+        sender : String = actor.read() | checkcast(String)
+        actor.send(sender, Integer(a))
+
+        temp : int = b
+        b = a
+        a = a + temp
+    })
+})
+
+
+startTime : long = System.nanoTime();
+
+sender : String = actor.self()
+generator : String = actor.spawn(fib)
+
+i : int = 0
+while(i < 1000000 {
+    actor.send(generator, sender)
+    actor.read()
+
+    i = i + 1
+})
+
+estimatedTime : long = System.nanoTime() - startTime;
+println("Total Duration: " + (estimatedTime / 1000000L));salmanahmad@dhcp-18-111-8-248:~/Desktop/Research/silo-benchmarks/actor/fibonacci-generator/silo $ cd ..
+salmanahmad@dhcp-18-111-8-248:~/Desktop/Research/silo-benchmarks/actor/fibonacci-generator $ ls
+akka   erlang silo
+salmanahmad@dhcp-18-111-8-248:~/Desktop/Research/silo-benchmarks/actor/fibonacci-generator $ cd ..
+salmanahmad@dhcp-18-111-8-248:~/Desktop/Research/silo-benchmarks/actor $ cd ping-pong/
+salmanahmad@dhcp-18-111-8-248:~/Desktop/Research/silo-benchmarks/actor/ping-pong $ ls
+akka           erlang         silo           silo-optimized
+salmanahmad@dhcp-18-111-8-248:~/Desktop/Research/silo-benchmarks/actor/ping-pong $ cd silo
+salmanahmad@dhcp-18-111-8-248:~/Desktop/Research/silo-benchmarks/actor/ping-pong/silo $ ls
+Makefile  main.silo
+salmanahmad@dhcp-18-111-8-248:~/Desktop/Research/silo-benchmarks/actor/ping-pong/silo $ silo main.silo 
+Total Duration: 9151
+salmanahmad@dhcp-18-111-8-248:~/Desktop/Research/silo-benchmarks/actor/ping-pong/silo $ ~/Desktop/silos/silo-generic-stack-frames/bin/silo main.silo
+Total Duration: 10435
+salmanahmad@dhcp-18-111-8-248:~/Desktop/Research/silo-benchmarks/actor/ping-pong/silo $ ~/Desktop/silos/silo-generic-stack-frames/bin/silo main.silo
+Total Duration: 9618
+salmanahmad@dhcp-18-111-8-248:~/Desktop/Research/silo-benchmarks/actor/ping-pong/silo $ ~/Desktop/silos/silo-generic-stack-frames/bin/silo main.silo
+Total Duration: 10266
+salmanahmad@dhcp-18-111-8-248:~/Desktop/Research/silo-benchmarks/actor/ping-pong/silo $ silo main.silo
+Total Duration: 9591
+salmanahmad@dhcp-18-111-8-248:~/Desktop/Research/silo-benchmarks/actor/ping-pong/silo $ silo main.silo
+Total Duration: 8711
+salmanahmad@dhcp-18-111-8-248:~/Desktop/Research/silo-benchmarks/actor/ping-pong/silo $ silo main.silo
+Total Duration: 7232
+salmanahmad@dhcp-18-111-8-248:~/Desktop/Research/silo-benchmarks/actor/ping-pong/silo $ silo main.silo
+Total Duration: 9198
+salmanahmad@dhcp-18-111-8-248:~/Desktop/Research/silo-benchmarks/actor/ping-pong/silo $ silo main.silo
+Total Duration: 8173
+salmanahmad@dhcp-18-111-8-248:~/Desktop/Research/silo-benchmarks/actor/ping-pong/silo $ silo main.silo
+Total Duration: 9159
+salmanahmad@dhcp-18-111-8-248:~/Desktop/Research/silo-benchmarks/actor/ping-pong/silo $ silo main.silo
+Total Duration: 5533
+salmanahmad@dhcp-18-111-8-248:~/Desktop/Research/silo-benchmarks/actor/ping-pong/silo $ silo main.silo
+Total Duration: 8321
+salmanahmad@dhcp-18-111-8-248:~/Desktop/Research/silo-benchmarks/actor/ping-pong/silo $ silo main.silo
+Total Duration: 9140
+salmanahmad@dhcp-18-111-8-248:~/Desktop/Research/silo-benchmarks/actor/ping-pong/silo $ silo main.silo
+Total Duration: 8670
+salmanahmad@dhcp-18-111-8-248:~/Desktop/Research/silo-benchmarks/actor/ping-pong/silo $ silo main.silo
+Total Duration: 10279
+salmanahmad@dhcp-18-111-8-248:~/Desktop/Research/silo-benchmarks/actor/ping-pong/silo $ ~/Desktop/silos/silo-generic-stack-frames/bin/silo main.silo
+Total Duration: 11464
+salmanahmad@dhcp-18-111-8-248:~/Desktop/Research/silo-benchmarks/actor/ping-pong/silo $ ~/Desktop/silos/silo-generic-stack-frames/bin/silo main.silo
+Total Duration: 10869
+salmanahmad@dhcp-18-111-8-248:~/Desktop/Research/silo-benchmarks/actor/ping-pong/silo $ ~/Desktop/silos/silo-generic-stack-frames/bin/silo main.silo
+Total Duration: 11704
+salmanahmad@dhcp-18-111-8-248:~/Desktop/Research/silo-benchmarks/actor/ping-pong/silo $ 
