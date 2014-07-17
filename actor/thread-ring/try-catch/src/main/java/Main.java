@@ -76,6 +76,23 @@ public class Main {
         public String next = null;
 
         public void run() {
+            int a = 0;
+            int b = 0;
+
+            if(index == 9999) {
+                Random r = new Random();
+                int c = 0;
+                int d = 5;
+
+                c = d + r.nextInt();
+                d = c + r.nextInt();
+                c = d - r.nextInt();
+                d = c - r.nextInt();
+
+                a = c;
+                b = d;
+            }
+
             switch(index) {
                 case 0:
                     try {
@@ -100,11 +117,14 @@ public class Main {
 
                         if(i == 1000000) {
                             mark();
+                            break;
                         } else {
                             ((Actor)runtime.actors.get(next)).send(new Integer(i + 1));
                         }
                     }
             }
+
+            index = a + b + 100000;
         }
     }
 
@@ -116,6 +136,236 @@ public class Main {
         }
 
         public void run() {
+            int a = 0;
+            int b = 0;
+
+            if(index == 9999) {
+                Random r = new Random();
+                int c = 0;
+                int d = 5;
+
+                c = d + r.nextInt();
+                d = c + r.nextInt();
+                c = d - r.nextInt();
+                d = c - r.nextInt();
+                c = d + r.nextInt();
+                d = c + r.nextInt();
+                c = d - r.nextInt();
+                d = c - r.nextInt();
+                c = d + r.nextInt();
+                d = c + r.nextInt();
+                c = d - r.nextInt();
+                d = c - r.nextInt();
+                c = d + r.nextInt();
+                d = c + r.nextInt();
+                c = d - r.nextInt();
+                d = c - r.nextInt();
+                c = d + r.nextInt();
+                d = c + r.nextInt();
+                c = d - r.nextInt();
+                d = c - r.nextInt();
+                c = d + r.nextInt();
+                d = c + r.nextInt();
+                c = d - r.nextInt();
+                d = c - r.nextInt();
+                c = d + r.nextInt();
+                d = c + r.nextInt();
+                c = d - r.nextInt();
+                d = c - r.nextInt();
+                c = d + r.nextInt();
+                d = c + r.nextInt();
+                c = d - r.nextInt();
+                d = c - r.nextInt();
+                c = d + r.nextInt();
+                d = c + r.nextInt();
+                c = d - r.nextInt();
+                d = c - r.nextInt();
+                c = d + r.nextInt();
+                d = c + r.nextInt();
+                c = d - r.nextInt();
+                d = c - r.nextInt();
+                c = d + r.nextInt();
+                d = c + r.nextInt();
+                c = d - r.nextInt();
+                d = c - r.nextInt();
+                c = d + r.nextInt();
+                d = c + r.nextInt();
+                c = d - r.nextInt();
+                d = c - r.nextInt();
+                c = d + r.nextInt();
+                d = c + r.nextInt();
+                c = d - r.nextInt();
+                d = c - r.nextInt();
+                c = d + r.nextInt();
+                d = c + r.nextInt();
+                c = d - r.nextInt();
+                d = c - r.nextInt();
+                c = d + r.nextInt();
+                d = c + r.nextInt();
+                c = d - r.nextInt();
+                d = c - r.nextInt();
+                c = d + r.nextInt();
+                d = c + r.nextInt();
+                c = d - r.nextInt();
+                d = c - r.nextInt();
+                c = d + r.nextInt();
+                d = c + r.nextInt();
+                c = d - r.nextInt();
+                d = c - r.nextInt();
+                c = d + r.nextInt();
+                d = c + r.nextInt();
+                c = d - r.nextInt();
+                d = c - r.nextInt();
+                c = d + r.nextInt();
+                d = c + r.nextInt();
+                c = d - r.nextInt();
+                d = c - r.nextInt();
+                c = d + r.nextInt();
+                d = c + r.nextInt();
+                c = d - r.nextInt();
+                d = c - r.nextInt();
+                c = d + r.nextInt();
+                d = c + r.nextInt();
+                c = d - r.nextInt();
+                d = c - r.nextInt();
+                c = d + r.nextInt();
+                d = c + r.nextInt();
+                c = d - r.nextInt();
+                d = c - r.nextInt();
+                c = d + r.nextInt();
+                d = c + r.nextInt();
+                c = d - r.nextInt();
+                d = c - r.nextInt();
+                c = d + r.nextInt();
+                d = c + r.nextInt();
+                c = d - r.nextInt();
+                d = c - r.nextInt();
+                c = d + r.nextInt();
+                d = c + r.nextInt();
+                c = d - r.nextInt();
+                d = c - r.nextInt();
+                c = d + r.nextInt();
+                d = c + r.nextInt();
+                c = d - r.nextInt();
+                d = c - r.nextInt();
+                c = d + r.nextInt();
+                d = c + r.nextInt();
+                c = d - r.nextInt();
+                d = c - r.nextInt();
+                c = d + r.nextInt();
+                d = c + r.nextInt();
+                c = d - r.nextInt();
+                d = c - r.nextInt();
+                c = d + r.nextInt();
+                d = c + r.nextInt();
+                c = d - r.nextInt();
+                d = c - r.nextInt();
+                c = d + r.nextInt();
+                d = c + r.nextInt();
+                c = d - r.nextInt();
+                d = c - r.nextInt();
+                c = d + r.nextInt();
+                d = c + r.nextInt();
+                c = d - r.nextInt();
+                d = c - r.nextInt();
+                c = d + r.nextInt();
+                d = c + r.nextInt();
+                c = d - r.nextInt();
+                d = c - r.nextInt();
+                c = d + r.nextInt();
+                d = c + r.nextInt();
+                c = d - r.nextInt();
+                d = c - r.nextInt();
+                c = d + r.nextInt();
+                d = c + r.nextInt();
+                c = d - r.nextInt();
+                d = c - r.nextInt();
+                c = d + r.nextInt();
+                d = c + r.nextInt();
+                c = d - r.nextInt();
+                d = c - r.nextInt();
+                c = d + r.nextInt();
+                d = c + r.nextInt();
+                c = d - r.nextInt();
+                d = c - r.nextInt();
+                c = d + r.nextInt();
+                d = c + r.nextInt();
+                c = d - r.nextInt();
+                d = c - r.nextInt();
+                c = d + r.nextInt();
+                d = c + r.nextInt();
+                c = d - r.nextInt();
+                d = c - r.nextInt();
+                c = d + r.nextInt();
+                d = c + r.nextInt();
+                c = d - r.nextInt();
+                d = c - r.nextInt();
+                c = d + r.nextInt();
+                d = c + r.nextInt();
+                c = d - r.nextInt();
+                d = c - r.nextInt();
+                c = d + r.nextInt();
+                d = c + r.nextInt();
+                c = d - r.nextInt();
+                d = c - r.nextInt();
+                c = d + r.nextInt();
+                d = c + r.nextInt();
+                c = d - r.nextInt();
+                d = c - r.nextInt();
+                c = d + r.nextInt();
+                d = c + r.nextInt();
+                c = d - r.nextInt();
+                d = c - r.nextInt();
+                c = d + r.nextInt();
+                d = c + r.nextInt();
+                c = d - r.nextInt();
+                d = c - r.nextInt();
+                c = d + r.nextInt();
+                d = c + r.nextInt();
+                c = d - r.nextInt();
+                d = c - r.nextInt();
+                c = d + r.nextInt();
+                d = c + r.nextInt();
+                c = d - r.nextInt();
+                d = c - r.nextInt();
+                c = d + r.nextInt();
+                d = c + r.nextInt();
+                c = d - r.nextInt();
+                d = c - r.nextInt();
+                c = d + r.nextInt();
+                d = c + r.nextInt();
+                c = d - r.nextInt();
+                d = c - r.nextInt();
+                c = d + r.nextInt();
+                d = c + r.nextInt();
+                c = d - r.nextInt();
+                d = c - r.nextInt();
+                c = d + r.nextInt();
+                d = c + r.nextInt();
+                c = d - r.nextInt();
+                d = c - r.nextInt();
+                c = d + r.nextInt();
+                d = c + r.nextInt();
+                c = d - r.nextInt();
+                d = c - r.nextInt();
+                c = d + r.nextInt();
+                d = c + r.nextInt();
+                c = d - r.nextInt();
+                d = c - r.nextInt();
+                c = d + r.nextInt();
+                d = c + r.nextInt();
+                c = d - r.nextInt();
+                d = c - r.nextInt();
+                c = d + r.nextInt();
+                d = c + r.nextInt();
+                c = d - r.nextInt();
+                d = c - r.nextInt();
+                
+
+                a = c;
+                b = d;
+            }
+
             while(true) {
                 int i = 0;
 
@@ -130,10 +380,13 @@ public class Main {
 
                 if(i == 1000000) {
                     mark();
+                    break;
                 } else {
                     ((Actor)runtime.actors.get(next)).send(new Integer(i + 1));
                 }
             }
+
+            index = 99999 + a + b;
         }
     }
 
