@@ -1,0 +1,3 @@
+
+all:
+	silo main.silo
