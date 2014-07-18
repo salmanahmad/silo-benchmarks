@@ -81,7 +81,6 @@ public class Main {
 
         for(int i = 0; i < 1000000; i++) {
             rt.spawn(new Service());
-            println(i)
         }
 
         await();

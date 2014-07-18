@@ -1,0 +1,50 @@
+###fibonacci-generator --- DONE
+
+akka            3617 / 207348
+erlang          28984 / 23120
+java-threads    10320 / 138524760
+silo            4091 / 122052
+silo (no ops)   4551 / 109292
+try-catch       4864 / 452652
+
+
+###ping-pong --- DONE
+
+akka            3121 / 203416
+erlang          3481 / 22784
+java-threads    11833 / 514968
+silo            3604 / 124748
+silo (no ops)   5152 / 108676
+try-catch       9113 / 235020
+
+
+###thread-creation --- DONE
+
+akka            32866 / 905632
+erlang          6514 / 39176
+java-threads    0 / 138548300
+silo            19492 / 112032
+silo (no ops)   19007 / 119572
+try-catch       19645 / 618188
+
+
+###thread-ring --- DONE
+
+akka            2955 / 210372
+erlang          735 / 22840
+java-threads    16209 / 138523400
+silo            2364 / 144572
+silo (no ops)   3701 / 133560
+try-catch       3955 / 201484
+
+
+###tree-traversal --- DONE
+
+akka            10675 / 578112
+erlang          4036 / 22732
+java-threads    21517 / 173780
+silo            11286 / 67248
+silo (no ops)   17773 / 125712
+try-catch       27356 / 190032
+
+
