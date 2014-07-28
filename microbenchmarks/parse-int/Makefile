@@ -17,5 +17,11 @@ js:
 silo:
 	silo test.silo
 
-clear:
-	rm *.class
+erlang:
+	erl -compile test.erl
+	erl -noshell -s inets start -s test start
+
+clean:
+	rm -f *.class
+	rm -f *.beam
+	rm -f erl_crash.dump
